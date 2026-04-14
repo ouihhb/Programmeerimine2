@@ -22,3 +22,17 @@ public class ProductsController : ControllerBase
         return Ok(result);
     }
 }
+
+[HttpGet("{id}")]
+public async Task<IActionResult> Get(int id)
+{
+    var result = await Mediator.Send(new GetProductQuery { Id = id });
+    return Ok(result);
+}
+
+[HttpPost]
+public async Task<IActionResult> Save([FromBody] SaveProductCommand command)
+{
+    var id = await Mediator.Send(command);
+    return Ok(id);
+}
