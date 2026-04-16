@@ -2,9 +2,8 @@
 
 namespace KooliProjekt.Application.Features.Product
 {
-    public class SaveProductCommand : IRequest<int>
+    public class DeleteProductCommand : IRequest
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
     }
 }

@@ -36,3 +36,10 @@ public async Task<IActionResult> Save([FromBody] SaveProductCommand command)
     var id = await Mediator.Send(command);
     return Ok(id);
 }
+
+[HttpDelete("{id}")]
+public async Task<IActionResult> Delete(int id)
+{
+    await Mediator.Send(new DeleteProductCommand { Id = id });
+    return Ok();
+}
