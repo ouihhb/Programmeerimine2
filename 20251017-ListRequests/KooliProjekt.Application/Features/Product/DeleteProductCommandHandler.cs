@@ -1,27 +1,25 @@
-﻿using KooliProjekt.Application.Data;
+﻿using KooliProjekt.Application.Data.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace KooliProjekt.Application.Features.Product
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductRepository _repository;
 
-        public DeleteProductCommandHandler(ApplicationDbContext context)
+        public DeleteProductCommandHandler(IProductRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products
-                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            var product = await _repository.GetAsync(request.Id);
 
             if (product != null)
             {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync(cancellationToken);
+                _repository.Remove(product);
+                await _repository.SaveChangesAsync();
             }
         }
     }

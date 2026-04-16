@@ -1,22 +1,21 @@
 ﻿using KooliProjekt.Application.Data;
+using KooliProjekt.Application.Data.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace KooliProjekt.Application.Features.ToDoItems
 {
     public class GetToDoItemQueryHandler : IRequestHandler<GetToDoItemQuery, ToDoItem?>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IToDoItemRepository _repository;
 
-        public GetToDoItemQueryHandler(ApplicationDbContext context)
+        public GetToDoItemQueryHandler(IToDoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<ToDoItem?> Handle(GetToDoItemQuery request, CancellationToken cancellationToken)
         {
-            return await _context.ToDoItems
-                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            return await _repository.GetAsync(request.Id);
         }
     }
 }

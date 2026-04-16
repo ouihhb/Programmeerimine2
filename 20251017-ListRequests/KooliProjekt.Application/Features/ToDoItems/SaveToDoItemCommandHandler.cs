@@ -1,42 +1,31 @@
 ﻿using KooliProjekt.Application.Data;
+using KooliProjekt.Application.Data.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace KooliProjekt.Application.Features.ToDoItems
 {
     public class SaveToDoItemCommandHandler : IRequestHandler<SaveToDoItemCommand, int>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IToDoItemRepository _repository;
 
-        public SaveToDoItemCommandHandler(ApplicationDbContext context)
+        public SaveToDoItemCommandHandler(IToDoItemRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<int> Handle(SaveToDoItemCommand request, CancellationToken cancellationToken)
         {
-            ToDoItem toDoItem;
+            var toDoItem = await _repository.GetAsync(request.Id);
 
-            if (request.Id == 0)
+            if (toDoItem == null)
             {
                 toDoItem = new ToDoItem();
-                _context.ToDoItems.Add(toDoItem);
-            }
-            else
-            {
-                toDoItem = await _context.ToDoItems
-                    .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
-
-                if (toDoItem == null)
-                {
-                    toDoItem = new ToDoItem();
-                    _context.ToDoItems.Add(toDoItem);
-                }
+                await _repository.AddAsync(toDoItem);
             }
 
-            toDoItem.Name = request.Name;
+            toDoItem.Title = request.Name;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _repository.SaveChangesAsync();
 
             return toDoItem.Id;
         }

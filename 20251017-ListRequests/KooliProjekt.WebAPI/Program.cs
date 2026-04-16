@@ -2,6 +2,7 @@ using FluentValidation;
 using KooliProjekt.Application.Behaviors;
 using KooliProjekt.Application.Data;
 using Microsoft.EntityFrameworkCore;
+using KooliProjekt.Application.Data.Repositories;
 
 namespace KooliProjekt.WebAPI
 {
@@ -21,6 +22,9 @@ namespace KooliProjekt.WebAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
+           
 
             var applicationAssembly = typeof(ErrorHandlingBehavior<,>).Assembly;
 

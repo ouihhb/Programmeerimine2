@@ -1,6 +1,6 @@
 ﻿namespace KooliProjekt.Application.Data
 {
-    public class ToDoItem
+    public class ToDoItem : Entity
     {
         public int Id { get; set; }
         public string Title { get; set; }

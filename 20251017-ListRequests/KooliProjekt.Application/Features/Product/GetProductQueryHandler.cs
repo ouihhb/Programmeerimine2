@@ -1,22 +1,21 @@
 ﻿using KooliProjekt.Application.Data;
+using KooliProjekt.Application.Data.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace KooliProjekt.Application.Features.Product
 {
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product?>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductRepository _repository;
 
-        public GetProductQueryHandler(ApplicationDbContext context)
+        public GetProductQueryHandler(IProductRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<Product?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Products
-                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            return await _repository.GetAsync(request.Id);
         }
     }
 }

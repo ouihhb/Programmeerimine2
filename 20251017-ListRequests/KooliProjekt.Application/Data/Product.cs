@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using KooliProjekt.Application.Infrastructure.Paging;
-public class Product
+public class Product : Entity
 {
     public int Id { get; set; }
 

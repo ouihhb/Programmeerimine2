@@ -1,20 +1,15 @@
 ﻿using KooliProjekt.Application.Data;
+using KooliProjekt.Application.Data.Repositories;
 using KooliProjekt.Application.Infrastructure.Paging;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
 public class GetProductsHandler : IRequestHandler<GetProductsQuery, PagedResult<Product>>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProductRepository _repository;
 
-    public GetProductsHandler(ApplicationDbContext context)
+    public GetProductsHandler(IProductRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
     public async Task<PagedResult<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
@@ -22,8 +17,14 @@ public class GetProductsHandler : IRequestHandler<GetProductsQuery, PagedResult<
         var pageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
         var pageSize = request.PageSize <= 0 ? 10 : request.PageSize;
 
-        return await _context.Products
-            .OrderBy(p => p.Id)
-            .GetPagedAsync(pageNumber, pageSize);
+        var all = await _repository.GetAllAsync();
+
+        return new PagedResult<Product>
+        {
+            Results = all.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
+            TotalCount = all.Count,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
     }
 }
