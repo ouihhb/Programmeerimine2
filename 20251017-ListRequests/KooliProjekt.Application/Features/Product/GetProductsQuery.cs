@@ -1,8 +1,12 @@
-﻿using KooliProjekt.Application.Infrastructure.Paging;
+﻿using KooliProjekt.Application.Data;
+using KooliProjekt.Application.Infrastructure.Paging;
 using MediatR;
 
-public class GetProductsQuery : IRequest<PagedResult<Product>>
+namespace KooliProjekt.Application.Features.Product
 {
-    public int PageNumber { get; set; }
-    public int PageSize { get; set; }
+    public class GetProductsQuery : IRequest<PagedResult<KooliProjekt.Application.Data.Product>>
+    {
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+    }
 }

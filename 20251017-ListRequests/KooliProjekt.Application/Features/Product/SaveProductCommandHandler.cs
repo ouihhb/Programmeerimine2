@@ -1,42 +1,32 @@
-﻿using KooliProjekt.Application.Data;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using KooliProjekt.Application.Data.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace KooliProjekt.Application.Features.Product
 {
     public class SaveProductCommandHandler : IRequestHandler<SaveProductCommand, int>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductRepository _repository;
 
-        public SaveProductCommandHandler(ApplicationDbContext context)
+        public SaveProductCommandHandler(IProductRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<int> Handle(SaveProductCommand request, CancellationToken cancellationToken)
         {
-            Product product;
+            var product = await _repository.GetAsync(request.Id);
 
-            if (request.Id == 0)
+            if (product == null)
             {
-                product = new Product();
-                _context.Products.Add(product);
-            }
-            else
-            {
-                product = await _context.Products
-                    .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
-
-                if (product == null)
-                {
-                    product = new Product();
-                    _context.Products.Add(product);
-                }
+                product = new KooliProjekt.Application.Data.Product();
+                await _repository.AddAsync(product);
             }
 
             product.Name = request.Name;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _repository.SaveChangesAsync();
 
             return product.Id;
         }

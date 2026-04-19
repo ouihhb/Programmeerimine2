@@ -3,7 +3,7 @@ using MediatR;
 
 namespace KooliProjekt.Application.Features.Product
 {
-    public class GetProductQuery : IRequest<Product?>
+    public class GetProductQuery : IRequest<KooliProjekt.Application.Data.Product?>
     {
         public int Id { get; set; }
     }

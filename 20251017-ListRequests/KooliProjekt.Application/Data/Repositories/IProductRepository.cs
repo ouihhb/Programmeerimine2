@@ -1,4 +1,6 @@
-﻿using KooliProjekt.Application.Data;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using KooliProjekt.Application.Data;
 
 namespace KooliProjekt.Application.Data.Repositories
 {

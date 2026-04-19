@@ -1,30 +1,46 @@
-﻿using KooliProjekt.Application.Data;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using KooliProjekt.Application.Data.Repositories;
 using KooliProjekt.Application.Infrastructure.Paging;
 using MediatR;
 
-public class GetProductsHandler : IRequestHandler<GetProductsQuery, PagedResult<Product>>
+namespace KooliProjekt.Application.Features.Product
 {
-    private readonly IProductRepository _repository;
-
-    public GetProductsHandler(IProductRepository repository)
+    public class GetProductsHandler : IRequestHandler<GetProductsQuery, PagedResult<KooliProjekt.Application.Data.Product>>
     {
-        _repository = repository;
-    }
+        private readonly IProductRepository _repository;
+        private const int MaxPageSize = 100;
 
-    public async Task<PagedResult<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
-    {
-        var pageNumber = request.PageNumber <= 0 ? 1 : request.PageNumber;
-        var pageSize = request.PageSize <= 0 ? 10 : request.PageSize;
-
-        var all = await _repository.GetAllAsync();
-
-        return new PagedResult<Product>
+        public GetProductsHandler(IProductRepository repository)
         {
-            Results = all.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(),
-            TotalCount = all.Count,
-            PageNumber = pageNumber,
-            PageSize = pageSize
-        };
+            _repository = repository;
+        }
+
+        public async Task<PagedResult<KooliProjekt.Application.Data.Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            if (request.PageNumber <= 0)
+                throw new ArgumentException("PageNumber must be greater than 0.");
+
+            if (request.PageSize <= 0)
+                throw new ArgumentException("PageSize must be greater than 0.");
+
+            if (request.PageSize > MaxPageSize)
+                throw new ArgumentException($"PageSize must not be greater than {MaxPageSize}.");
+
+            var all = await _repository.GetAllAsync();
+
+            return new PagedResult<KooliProjekt.Application.Data.Product>
+            {
+                Results = all.Skip((request.PageNumber - 1) * request.PageSize)
+                             .Take(request.PageSize)
+                             .ToList(),
+                PageSize = request.PageSize
+            };
+        }
     }
 }

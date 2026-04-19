@@ -1,8 +1,12 @@
 using FluentValidation;
 using KooliProjekt.Application.Behaviors;
 using KooliProjekt.Application.Data;
-using Microsoft.EntityFrameworkCore;
 using KooliProjekt.Application.Data.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace KooliProjekt.WebAPI
 {
@@ -19,12 +23,12 @@ namespace KooliProjekt.WebAPI
                 options.UseSqlServer(connectionString);
             });
 
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            builder.Services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
-           
 
             var applicationAssembly = typeof(ErrorHandlingBehavior<,>).Assembly;
 
@@ -46,20 +50,8 @@ namespace KooliProjekt.WebAPI
                 app.UseSwaggerUI();
             }
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-
-                SeedData.Generate(context);
-            }
-
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }

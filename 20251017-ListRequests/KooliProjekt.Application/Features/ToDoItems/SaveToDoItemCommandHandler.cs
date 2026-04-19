@@ -1,4 +1,6 @@
-﻿using KooliProjekt.Application.Data;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using KooliProjekt.Application.Data;
 using KooliProjekt.Application.Data.Repositories;
 using MediatR;
 
@@ -15,19 +17,19 @@ namespace KooliProjekt.Application.Features.ToDoItems
 
         public async Task<int> Handle(SaveToDoItemCommand request, CancellationToken cancellationToken)
         {
-            var toDoItem = await _repository.GetAsync(request.Id);
+            var item = await _repository.GetAsync(request.Id);
 
-            if (toDoItem == null)
+            if (item == null)
             {
-                toDoItem = new ToDoItem();
-                await _repository.AddAsync(toDoItem);
+                item = new ToDoItem();
+                await _repository.AddAsync(item);
             }
 
-            toDoItem.Title = request.Name;
+            item.Title = request.Name;
 
             await _repository.SaveChangesAsync();
 
-            return toDoItem.Id;
+            return item.Id;
         }
     }
 }

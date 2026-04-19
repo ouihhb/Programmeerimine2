@@ -1,16 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using KooliProjekt.Application.Infrastructure.Paging;
-public class Product : Entity
+
+namespace KooliProjekt.Application.Data
 {
-    public int Id { get; set; }
+    public class Product : Entity
+    {
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
 
-    [Required]
-    [StringLength(100)]
-    public string Name { get; set; }
+        [StringLength(255)]
+        public string Description { get; set; }
 
-    [StringLength(255)]
-    public string Description { get; set; }
-
-    [Range(0, 100000)]
-    public decimal Price { get; set; }
+        [Range(0, 100000)]
+        public decimal Price { get; set; }
+    }
 }
