@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using KooliProjekt.Application.Data.Repositories;
 using MediatR;
@@ -16,6 +17,12 @@ namespace KooliProjekt.Application.Features.Product
 
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            if (request.Id <= 0)
+                return;
+
             var product = await _repository.GetAsync(request.Id);
 
             if (product != null)
