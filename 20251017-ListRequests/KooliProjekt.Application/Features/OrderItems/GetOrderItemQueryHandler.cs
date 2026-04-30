@@ -1,22 +1,22 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using KooliProjekt.Application.Data;
 using KooliProjekt.Application.Data.Repositories;
 using MediatR;
 
-namespace KooliProjekt.Application.Features.ToDoItems
+namespace KooliProjekt.Application.Features.OrderItems
 {
-    public class GetToDoItemQueryHandler : IRequestHandler<GetToDoItemQuery, ToDoItem?>
+    public class GetOrderItemQueryHandler : IRequestHandler<GetOrderItemQuery, OrderItem?>
     {
-        private readonly IToDoItemRepository _repository;
+        private readonly IOrderItemRepository _repository;
 
-        public GetToDoItemQueryHandler(IToDoItemRepository repository)
+        public GetOrderItemQueryHandler(IOrderItemRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<ToDoItem?> Handle(GetToDoItemQuery request, CancellationToken cancellationToken)
+        public async Task<OrderItem?> Handle(GetOrderItemQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));

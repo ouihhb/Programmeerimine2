@@ -24,7 +24,9 @@ namespace KooliProjekt.WebAPI
             });
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            builder.Services.AddScoped<IToDoItemRepository, ToDoItemRepository>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -51,7 +53,9 @@ namespace KooliProjekt.WebAPI
             }
 
             app.UseAuthorization();
+
             app.MapControllers();
+
             app.Run();
         }
     }

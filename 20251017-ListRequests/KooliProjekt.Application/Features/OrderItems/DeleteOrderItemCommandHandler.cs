@@ -1,21 +1,21 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using KooliProjekt.Application.Data.Repositories;
 using MediatR;
 
-namespace KooliProjekt.Application.Features.ToDoItems
+namespace KooliProjekt.Application.Features.OrderItems
 {
-    public class DeleteToDoItemCommandHandler : IRequestHandler<DeleteToDoItemCommand>
+    public class DeleteOrderItemCommandHandler : IRequestHandler<DeleteOrderItemCommand>
     {
-        private readonly IToDoItemRepository _repository;
+        private readonly IOrderItemRepository _repository;
 
-        public DeleteToDoItemCommandHandler(IToDoItemRepository repository)
+        public DeleteOrderItemCommandHandler(IOrderItemRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task Handle(DeleteToDoItemCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteOrderItemCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));

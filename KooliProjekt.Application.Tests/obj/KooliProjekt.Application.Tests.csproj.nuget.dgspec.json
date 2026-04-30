@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj": {}
+    "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj": {}
   },
   "projects": {
     "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj": {
@@ -104,14 +104,14 @@
         }
       }
     },
-    "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj": {
+    "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj",
         "projectName": "KooliProjekt.Application.Tests",
-        "projectPath": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj",
+        "projectPath": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj",
         "packagesPath": "C:\\Users\\maksi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\obj\\",
+        "outputPath": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
