@@ -23,6 +23,13 @@ namespace KooliProjekt.WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> List([FromQuery] ListCustomersQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Save([FromBody] SaveCustomerCommand command)
         {

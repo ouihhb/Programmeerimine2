@@ -34,6 +34,13 @@ namespace KooliProjekt.Application.Features.Product
 
             var all = await _repository.GetAllAsync();
 
+            if (!string.IsNullOrWhiteSpace(request.Search))
+            {
+                all = all
+                    .Where(x => x.Name != null && x.Name.Contains(request.Search, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
             return new PagedResult<KooliProjekt.Application.Data.Product>
             {
                 Results = all.Skip((request.PageNumber - 1) * request.PageSize)

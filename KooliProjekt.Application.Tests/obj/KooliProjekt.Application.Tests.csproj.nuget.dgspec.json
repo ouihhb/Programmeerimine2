@@ -4,14 +4,14 @@
     "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\KooliProjekt.Application.Tests\\KooliProjekt.Application.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj": {
+    "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj",
+        "projectUniqueName": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj",
         "projectName": "KooliProjekt.Application",
-        "projectPath": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj",
+        "projectPath": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj",
         "packagesPath": "C:\\Users\\maksi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\obj\\",
+        "outputPath": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -132,8 +132,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj": {
-                "projectPath": "C:\\Users\\maksi\\source\\repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj"
+              "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj": {
+                "projectPath": "C:\\Users\\maksi\\Source\\Repos\\Programmeerimine2\\20251017-ListRequests\\KooliProjekt.Application\\KooliProjekt.Application.csproj"
               }
             }
           }

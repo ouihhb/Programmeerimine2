@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using KooliProjekt.Application.Data;
@@ -17,6 +18,10 @@ namespace KooliProjekt.Application.Features.OrderItems
 
         public async Task<int> Handle(SaveOrderItemCommand request, CancellationToken cancellationToken)
         {
+
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             var item = await _repository.GetAsync(request.Id);
 
             if (item == null)
