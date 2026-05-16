@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KooliProjekt.Application.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KooliProjekt.IntegrationTests", "KooliProjekt.IntegrationTests\KooliProjekt.IntegrationTests.csproj", "{84A35E1B-69E3-4E53-8D71-CF09E28C614B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KooliProjekt.WindowsForms", "KooliProjekt.WindowsForms\KooliProjekt.WindowsForms.csproj", "{71AAD616-4A45-432C-8F8D-8166E36F7A65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,18 @@ Global
 		{84A35E1B-69E3-4E53-8D71-CF09E28C614B}.Release|x64.Build.0 = Release|Any CPU
 		{84A35E1B-69E3-4E53-8D71-CF09E28C614B}.Release|x86.ActiveCfg = Release|Any CPU
 		{84A35E1B-69E3-4E53-8D71-CF09E28C614B}.Release|x86.Build.0 = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|x64.Build.0 = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Debug|x86.Build.0 = Debug|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|x64.ActiveCfg = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|x64.Build.0 = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|x86.ActiveCfg = Release|Any CPU
+		{71AAD616-4A45-432C-8F8D-8166E36F7A65}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +92,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9310C736-2B1E-4752-AC2B-F0FAB660E45F} = {1D69D683-711D-3910-3232-9FC5CCC3C733}
 		{E9ADE786-B2C2-46B3-9AFD-7326D01A2C4D} = {1D69D683-711D-3910-3232-9FC5CCC3C733}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0604813-D84E-4E02-8BF5-20EBE06C94B8}
 	EndGlobalSection
 EndGlobal
