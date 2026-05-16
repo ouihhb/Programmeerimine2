@@ -29,6 +29,8 @@ namespace KooliProjekt.Application.Features.Product
             }
 
             product.Name = request.Name;
+            product.Description = request.Description;
+            product.Price = request.Price;
 
             await _repository.SaveChangesAsync();
 

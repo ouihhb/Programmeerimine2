@@ -1,0 +1,76 @@
+@page "/"
+@page "/products"
+@inject IProductApiClient ApiClient
+@inject NavigationManager Navigation
+
+<PageTitle>Products</PageTitle>
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h1>Products</h1>
+    <button class="btn btn-primary" @onclick="AddNew">Add new</button>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price</td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-secondary" @onclick="() => Edit(product.Id)">Edit</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Product>? products;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            products = await ApiClient.List();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+    }
+
+    private void AddNew()
+    {
+        Navigation.NavigateTo("/products/add");
+    }
+
+    private void Edit(int id)
+    {
+        Navigation.NavigateTo($"/products/edit/{id}");
+    }
+}

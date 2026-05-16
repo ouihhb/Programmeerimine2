@@ -5,6 +5,8 @@ namespace KooliProjekt.WindowsForms.Api
 {
     public interface IApiClient
     {
-        Task<List<Product>> GetProducts();
+        Task<OperationResult<List<Product>>> List();
+        Task<OperationResult<int>> Save(Product product);
+        Task<OperationResult> Delete(int id);
     }
 }

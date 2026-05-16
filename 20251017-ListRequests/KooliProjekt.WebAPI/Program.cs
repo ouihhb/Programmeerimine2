@@ -28,6 +28,16 @@ namespace KooliProjekt.WebAPI
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowClientApps", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -52,6 +62,7 @@ namespace KooliProjekt.WebAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("AllowClientApps");
             app.UseAuthorization();
 
             app.MapControllers();

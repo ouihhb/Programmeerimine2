@@ -1,0 +1,82 @@
+@page "/products/add"
+@page "/products/edit/{Id:int}"
+@inject IProductApiClient ApiClient
+@inject NavigationManager Navigation
+
+<PageTitle>Edit product</PageTitle>
+
+<h1>@(Id == null ? "Add product" : "Edit product")</h1>
+
+@if (!string.IsNullOrWhiteSpace(error))
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+<EditForm Model="product" OnValidSubmit="Save">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label" for="name">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="product.Name" />
+        <ValidationMessage For="@(() => product.Name)" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <InputText id="description" class="form-control" @bind-Value="product.Description" />
+        <ValidationMessage For="@(() => product.Description)" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="price">Price</label>
+        <InputNumber id="price" class="form-control" @bind-Value="product.Price" />
+        <ValidationMessage For="@(() => product.Price)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-link" @onclick="Cancel">Cancel</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private Product product = new();
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            return;
+        }
+
+        try
+        {
+            product = await ApiClient.Get(Id.Value);
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+    }
+
+    private async Task Save()
+    {
+        try
+        {
+            await ApiClient.Save(product);
+            Navigation.NavigateTo("/products");
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+    }
+
+    private void Cancel()
+    {
+        Navigation.NavigateTo("/products");
+    }
+}
